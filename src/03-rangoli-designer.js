@@ -71,24 +71,103 @@
  */
 export function addColors(element, ...colors) {
   // Your code here
+  
+
+  if(element == null){
+    return -1
+  }
+
+  let j=0 
+  colors.forEach((i)=>{
+    if(!element.classList.contains(i)){
+      element.classList.add(i)
+      j++
+    }
+  })
+
+  return j
 }
 
 export function removeColors(element, ...colors) {
   // Your code here
+  if(element == null){
+    return -1
+  }
+
+
+  let count = 0
+  colors.forEach((i)=>{
+    if(element.classList.contains(i)){
+      element.classList.remove(i)
+      count++
+    }
+    
+  })
+
+  return count
 }
 
 export function togglePattern(element, pattern) {
   // Your code here
+  if(element == null){
+    return null
+  }
+  element.classList.toggle(`pattern-${pattern}`)
+
+  if(element.classList.contains(`pattern-${pattern}`)){
+    return true
+  }else{
+    return false
+  }
 }
 
 export function hasDesign(element, designName) {
   // Your code here
+
+  if(element == null){
+    return false
+  }
+  if(element.classList.contains(`design-${designName}`)){
+    return true
+  }else{
+    return false
+  }
 }
 
 export function replaceDesign(element, oldDesign, newDesign) {
   // Your code here
+
+
+  if(element == null){
+    return false
+  }
+  if(element.classList.contains(`design-${oldDesign}`)){
+    element.classList.remove(`design-${oldDesign}`)
+    element.classList.add(`design-${newDesign}`)
+    return true
+  }else{
+      element.classList.add(`design-${newDesign}`)
+      return false
+  }
 }
 
 export function getActiveColors(element) {
   // Your code here
+  if(element == null){
+    return []
+  }
+
+  let array =[]
+ 
+
+  element.classList.forEach((i)=>{
+    if(i.startsWith(`color-`)){
+        let newName = i.slice(6)
+        array.push(newName)
+    }else{
+      return []
+    }
+  })
+
+  return array
 }
