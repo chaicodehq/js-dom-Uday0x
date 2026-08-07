@@ -73,10 +73,39 @@
  */
 export function applyBaseStyle(element, color, size) {
   // Your code here
+
+  if(element == null){
+    return null
+  }
+  element.style.backgroundColor = color
+  element.style.width = `${size}px`
+  element.style.height = `${size}px`
+  element.style.borderRadius = `50%`
+
+  return element
+  
+
 }
 
 export function setPatternStyle(element, styles) {
   // Your code here
+  if(styles == null || typeof styles !="object"){
+    return -1
+  }
+
+  if(typeof element !="object" || element == null){
+    return 0
+  }
+  let count = 0
+  for (let uday of styles){
+    element.style.uday = styles[uday]
+    count++
+  }
+
+  return count
+
+
+
 }
 
 export function getComputedStyles(element, properties) {

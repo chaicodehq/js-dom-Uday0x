@@ -38,7 +38,7 @@
  *      - Returns old name string
  *      - Agar element not found, return null
  *      - Agar newName not string or empty, return null
- *
+ *  
  *   4. highlightCheapestChai(document)
  *      - Finds all ".chai-price" elements using querySelectorAll
  *      - Parses each price (remove ₹, parse to number)
@@ -66,16 +66,67 @@
  */
 export function updateChaiPrice(document, chaiType, newPrice) {
   // Your code here
+  if(newPrice <= 0 || typeof newPrice !="number"){
+    return false
+  }
+  if(typeof chaiType != "string" || chaiType.length == 0 ){
+    return false
+  }
+  let uday = document.getElementById(`price-${chaiType}`)
+  if(!uday){
+    return false
+  }
+  uday.textContent = `₹${newPrice}`
+  if(uday) return true
+  
 }
 
 export function getChaiPrice(document, chaiType) {
   // Your code here
+
+  
+  let uday = document.getElementById(`price-${chaiType}`)
+  if(!uday) return null
+  let newT = uday.textContent
+  let firstLE = newT.slice(1)
+  return Number(firstLE)
+
 }
 
 export function updateStallName(document, newName) {
   // Your code here
-}
 
+  if(typeof newName!="string" || newName.length == 0){
+    return null
+  }
+  let uday = document.querySelector(`.stall-name`)
+  if(!uday){
+    return null 
+  }
+  let oldTextContent = uday.textContent
+  uday.textContent = newName
+
+  return oldTextContent
+}
+ 
 export function highlightCheapestChai(document) {
   // Your code here
+  let udayEle = document.querySelectorAll(".chai-price")
+  if(udayEle.length == 0){
+    return null
+  }
+
+  let min = 0 
+  udayEle.forEach(element => {
+    let newT = element.textContent
+    let firstLE = newT.slice(1)
+    newT.textContent = Number(firstLE)
+
+    // element.classList.remove('.cheapest') 
+    if(min>newT.textContent){
+      
+    }
+  });
+
+  return newU
 }
